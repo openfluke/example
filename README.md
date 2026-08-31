@@ -24,8 +24,17 @@ cd cam && go run ./cmd/runall
 Local engine: `../welvet` (via `go.mod` replace). Docs source:
 `../chaosglue/welvet/openfluke.github.io`.
 
-## When to open which
+## PDF book
 
-- **Learning a package** (Dense, MHA, Quant, DNA, …) → `welvet/NN-name/`
-- **Multi-cam / BranchModes / CamSync / Freeze** → `cam/`
-- **Why does this exist?** → each folder’s `README.md` (When / Where / Why / What)
+Run every example, collect each README + live stdout, write one PDF:
+
+```bash
+cd /home/openfluke/git/example
+pip install --user -r requirements-pdf.txt
+python3 build_examples_pdf.py -o examples-book.pdf
+# READMEs only (no go run):
+python3 build_examples_pdf.py --skip-run -o examples-readmes.pdf
+# one suite / filter:
+python3 build_examples_pdf.py --suite welvet --only 20-cnn,71-dispatch
+```
+
