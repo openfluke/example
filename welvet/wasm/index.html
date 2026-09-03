@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Welvet examples WASM gallery</title>
+  <style>
+    body { font-family: ui-monospace, monospace; background: #111; color: #eee; margin: 2rem; }
+    .ok { color: #6bcb77; } .fail { color: #ff6b6b; }
+  </style>
+</head>
+<body>
+  <h1>Welvet book — browser WASM</h1>
+  <p>Serve <code>apps/w2a/typescript/dist</code> at /dist (npm run serve).</p>
+  <pre id="log">…</pre>
+  <script src="/dist/wasm_exec.js"></script>
+  <script type="module">
+    const log = document.getElementById("log");
+    const say = (m, c) => { log.innerHTML += `<span class="${c||""}">${m}</span>\n`; };
+    try {
+      const go = new Go();
+      const { instance } = await WebAssembly.instantiate(await (await fetch("/dist/main.wasm")).arrayBuffer(), go.importObject);
+      go.run(instance);
+      await new Promise(r => setTimeout(r, 50));
+      if (welvetEngineVersion() !== "1.1.1") throw new Error("version");
+      const g = createWelvetGrid(JSON.stringify({ depth:1,rows:1,cols:1,layers_per_cell:1 }));
+      g.placeDense(JSON.stringify({ in:8, out:4, act:"relu", dtype:1 }));
+      const x = Float32Array.from({length:8}, (_,i)=>i*0.1);
+      const fwd = g.forward(x);
+      if (fwd.error) throw new Error(fwd.error);
+      say("dense forward " + fwd.output.length, "ok");
+      const modes = JSON.parse(listWelvetNamedTrainModes());
+      const st = createWelvetBicameral(JSON.stringify({ in:4, hidden:4, out:4 }));
+      const r = st.trainStackMSE(new Float32Array(4).fill(0.1), new Float32Array([1,0,0,0]), modes[0], 0.05);
+      if (r.error) throw new Error(r.error);
+      say("bicameral " + modes[0] + " " + r.loss, "ok");
+      say("=== OK ===", "ok");
+    } catch (e) { say(String(e), "fail"); }
+  </script>
+</body>
+</html>

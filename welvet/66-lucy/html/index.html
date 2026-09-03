@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>lucy — SoftAcc / Score measuring — WASM</title>
+  <style>
+    :root { color-scheme: light dark; font-family: ui-sans-serif, system-ui, sans-serif; }
+    body { margin: 1.5rem; max-width: 52rem; line-height: 1.45; }
+    h1 { font-size: 1.25rem; font-weight: 650; }
+    #out pre { margin: 0.35rem 0; padding: 0.5rem 0.65rem; background: color-mix(in oklab, Canvas 92%, CanvasText 8%); border-radius: 6px; overflow-x: auto; font-size: 0.85rem; }
+    .meta { opacity: 0.7; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1 id="title">welvet/66-lucy</h1>
+  <p class="meta">lucy — SoftAcc / Score measuring. Serve from the <code>example</code> repo root so <code>/_wasm/assets/main.wasm</code> resolves (see <code>_wasm/README.md</code>).</p>
+  <div id="out"></div>
+  <script>window.CHAPTER = "66-lucy";</script>
+  <script src="../../../_wasm/assets/wasm_exec.js"></script>
+  <script type="module" src="../../../_wasm/browser-runner.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "@openfluke/example-welvet-12-mha",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node run.mjs",
+    "test": "node run.mjs"
+  }
+}

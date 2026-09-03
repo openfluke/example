@@ -1,4 +1,4 @@
-# 36. systems/tanhi — UDP HUD
+# 36. systems/tanhi — TANHI · UDP HUD
 
 **Part:** V · Systems  
 **Package:** `github.com/openfluke/welvet/systems/tanhi`  
@@ -22,7 +22,7 @@ Training visualization must never block the engine — best-effort UDP JSON-line
 
 ## What
 
-ConfigFromGrid, Emit/EmitSweep, DefaultUDPPort. SoulGlitch-style consumers.
+**TANHI** = *Tensor Activation Network Holographic Interface*. Sparse non-blocking JSON-line UDP events for per-layer forward/backward HUD visualization. ConfigFromGrid, Emit/EmitSweep, DefaultUDPPort (17481). SoulGlitch-style consumers.
 
 _No captured output in `_manifest.json` yet — run `go run .` and paste here._
 ## Source

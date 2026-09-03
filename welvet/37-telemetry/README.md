@@ -18,7 +18,7 @@ cd 37-telemetry && source ../env.sh && go run .
 
 ## Why
 
-Static structural blueprints (sizes, op kinds) differ from live tanhi events.
+Static structural blueprints (sizes, op kinds) differ from live TANHI events.
 
 ## What
 

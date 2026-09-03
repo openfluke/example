@@ -1,0 +1,9 @@
+{
+  "name": "@openfluke/example-cam-04_kit",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node run.mjs",
+    "test": "node run.mjs"
+  }
+}

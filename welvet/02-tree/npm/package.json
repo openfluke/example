@@ -1,0 +1,9 @@
+{
+  "name": "@openfluke/example-welvet-02-tree",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node run.mjs",
+    "test": "node run.mjs"
+  }
+}

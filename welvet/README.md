@@ -56,7 +56,7 @@ cd 11-dense && go run .      # one chapter
 | 33 | [`33-dna`](33-dna/) | systems/dna | `github.com/openfluke/welvet/systems/dna` | ok | yes |
 | 34 | [`34-evolution`](34-evolution/) | systems/evolution | `github.com/openfluke/welvet/systems/evolution` | ok | yes |
 | 35 | [`35-tween`](35-tween/) | systems/tween | `github.com/openfluke/welvet/systems/tween` | ok | yes |
-| 36 | [`36-tanhi`](36-tanhi/) | systems/tanhi — UDP HUD | `github.com/openfluke/welvet/systems/tanhi` | ok | yes |
+| 36 | [`36-tanhi`](36-tanhi/) | systems/tanhi — TANHI · UDP HUD | `github.com/openfluke/welvet/systems/tanhi` | ok | yes |
 | 37 | [`37-telemetry`](37-telemetry/) | systems/telemetry | `github.com/openfluke/welvet/systems/telemetry` | ok | yes |
 | 66 | [`66-lucy`](66-lucy/) | lucy — SoftAcc / Score measuring | `github.com/openfluke/welvet/lucy` | ok | yes |
 | 69 | [`69-lucy-density`](69-lucy-density/) | Lucy density — synthetic organism | `github.com/openfluke/welvet/lucy` | ok | yes |

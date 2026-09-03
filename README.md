@@ -24,6 +24,27 @@ cd cam && go run ./cmd/runall
 Local engine: `../welvet` (via `go.mod` replace). Docs source:
 `../chaosglue/welvet/openfluke.github.io`.
 
+## WASM — npm + HTML (every chapter)
+
+Each `welvet/<slug>/` and `cam/<slug>/` has **`npm/`** (Node) and **`html/`** (browser):
+
+```bash
+export WELVET_TS=/path/to/welvet/apps/w2a/typescript   # after npm run build:all
+node welvet/11-dense/npm/run.mjs
+node cam/01_modes/npm/run.mjs
+
+# all chapters (73 OK + 8 native-only SKIP)
+bash run-all-npm.sh
+# or: bash run-all-wasm.sh
+
+# HTML: sync assets, serve example root
+bash _wasm/sync-assets.sh
+npx --yes serve -l 4173 .
+# → http://localhost:4173/welvet/11-dense/html/
+```
+
+Details: [`_wasm/README.md`](_wasm/README.md).
+
 ## PDF book
 
 Run every example, collect each README + live stdout, write one PDF:
