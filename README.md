@@ -21,8 +21,9 @@ cd welvet/11-dense && source ../env.sh && go run .
 cd cam && go run ./cmd/runall
 ```
 
-Local engine: `../welvet` (via `go.mod` replace). Docs source:
-`../chaosglue/welvet/openfluke.github.io`.
+Engine: published **`github.com/openfluke/welvet@v1.1.2`** (no local `replace` —
+webgpu / go-sentencepiece come from the module proxy). Feature book:
+https://openfluke.github.io/welvet/
 
 ## WASM — npm + HTML (every chapter)
 
