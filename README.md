@@ -5,7 +5,7 @@ Runnable Welvet examples — **every feature** from the
 
 | Folder | What |
 |--------|------|
-| [`welvet/`](welvet/) | Book chapters 01–75: core → layers → runtime → systems → model → stubs — each with **When / Where / Why** + sample output |
+| [`welvet/`](welvet/) | Book chapters 01–78 (incl. **§76–78 NativeCPU**): core → layers → runtime → systems → model → stubs — each with **When / Where / Why** + sample output |
 | [`cam/`](cam/) | Parallel cameral deep-dive: Freeze, Shadow, CamSync, DNAReg, Rotate, Combine, every layer-as-cam — **asserted PASS/FAIL proofs** |
 
 ## Quick start
@@ -21,9 +21,9 @@ cd welvet/11-dense && source ../env.sh && go run .
 cd cam && go run ./cmd/runall
 ```
 
-Engine: published **`github.com/openfluke/welvet@v1.1.2`** (no local `replace` —
-webgpu / go-sentencepiece come from the module proxy). Feature book:
-https://openfluke.github.io/welvet/
+Engine: **`github.com/openfluke/welvet@v1.1.7`** (NativeCPU TrainModes). Until the
+tag is on the proxy, `welvet/go.mod` keeps a local `replace => ../../welvet`.
+Feature book: https://openfluke.github.io/welvet/ (§76–78 NativeCPU).
 
 ## WASM — npm + HTML (every chapter)
 

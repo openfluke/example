@@ -448,5 +448,23 @@
     "num": "75",
     "title": "Apps map \u2014 when/where/why",
     "has_main": true
+  },
+  {
+    "slug": "76-nativecpu",
+    "num": "76",
+    "title": "NativeCPU \u2014 opt-in welvet.cpp C ABI",
+    "has_main": true
+  },
+  {
+    "slug": "77-native-layers",
+    "num": "77",
+    "title": "NativeCPU \u2014 TrainNativeMSE per layer",
+    "has_main": true
+  },
+  {
+    "slug": "78-native-trainmodes",
+    "num": "78",
+    "title": "NativeCPU \u2014 TrainMode stack / parallel / mesh / line",
+    "has_main": true
   }
 ]

@@ -1,15 +1,17 @@
 # Welvet feature examples
 
 Runnable Go for **every Welvet book chapter** — copied from
-`chaosglue/welvet/openfluke.github.io/welvet/examples`, pointed at local
+`openfluke.github.io/welvet/examples` (and local NativeCPU chapters), pointed at local
 `../../welvet` via `go.mod` replace.
 
 Each folder has **When / Where / Why / What** plus captured sample output.
 
+**v1.1.7 NativeCPU:** chapters **76–78** — opt-in `BackendNativeCPU`, per-layer `TrainNativeMSE`, TrainMode stack/parallel/mesh/line + `SyncWeightsFromNative`.
+
 Cameral deep-dive (Freeze, CamSync, DNAReg, …) lives next door: [`../cam`](../cam/).
 
 ```bash
-cd /home/openfluke/git/example/welvet
+cd welvet   # or /home/openfluke/gs/example/welvet
 source ./env.sh
 go run ./cmd/runall          # smoke all mains that exist
 cd 11-dense && go run .      # one chapter
@@ -89,24 +91,26 @@ cd 11-dense && go run .      # one chapter
 | 62 | [`62-w2a`](62-w2a/) | w2a — validation harness | `github.com/openfluke/w2a` | ok | yes |
 | 63 | [`63-validation`](63-validation/) | Validation report — full suite | `github.com/openfluke/w2a` | ok | yes |
 | 64 | [`64-scorecard`](64-scorecard/) | Scorecard → v1.0 / minors | `—` | ok | yes |
-
-## Last smoke
-
-```
-go run ./cmd/runall
-======== welvet book: ok=70 fail=0 skip=0 ========
-```
-
-## Related
-
-- Book HTML: `chaosglue/welvet/openfluke.github.io/welvet/`
-- Engine: `/home/openfluke/git/welvet`
-- Cam cookbook: [`../cam`](../cam/)
-
 | 71 | [`71-dispatch`](71-dispatch/) | runtime/dispatch — Op switchboard | `github.com/openfluke/welvet/runtime/dispatch` | ok | yes |
 | 72 | [`72-wav2vec2`](72-wav2vec2/) | model/wav2vec2 — CTC ASR | `github.com/openfluke/welvet/model/wav2vec2` | ok | yes |
 | 73 | [`73-all-layers`](73-all-layers/) | All layers — one forward each | `layers/*` | ok | yes |
 | 74 | [`74-kokoro`](74-kokoro/) | Kokoro — empty model vs apps | `model/kokoro` · `apps/kokoro` | ok | yes |
 | 75 | [`75-apps-map`](75-apps-map/) | Apps map — when/where/why | `apps/*` | ok | yes |
+| 76 | [`76-nativecpu`](76-nativecpu/) | NativeCPU — opt-in welvet.cpp C ABI | `github.com/openfluke/welvet/nativecpp` | ok | yes |
+| 77 | [`77-native-layers`](77-native-layers/) | NativeCPU — TrainNativeMSE per layer | `layers/*` + nativecpp | ok | yes |
+| 78 | [`78-native-trainmodes`](78-native-trainmodes/) | NativeCPU — TrainMode stack / parallel / mesh / line | `layers/parallel` + nativecpp | ok | yes |
+
+## Last smoke
+
+```
+go run ./cmd/runall
+======== welvet book: ok=73+ fail=0 skip=0  # re-run after §76–78 ========
+```
+
+## Related
+
+- Book HTML: https://openfluke.github.io/welvet/ (§76–78 NativeCPU)
+- Engine: `/home/openfluke/gs/welvet` (`@v1.1.7`)
+- Cam cookbook: [`../cam`](../cam/)
 
 See also [`GAPS.md`](GAPS.md) for what still needs external weights.
