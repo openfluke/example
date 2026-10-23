@@ -8,6 +8,8 @@ Each folder has **When / Where / Why / What** plus captured sample output.
 
 **v1.1.7 NativeCPU:** chapters **76–78** — opt-in `BackendNativeCPU`, per-layer `TrainNativeMSE`, TrainMode stack/parallel/mesh/line + `SyncWeightsFromNative`.
 
+**v1.2.0 Hexagon NPU:** chapters **79–81** — opt-in `BackendQNN` + `SyncToQNN`, session layer tour, RESULTS.md showcase (`welvet.qnn` 1.0.0 · Windows ARM64). Put `welvet/native/qnn/windows_arm64` on `PATH` so `libwelvet_qnn.dll` loads.
+
 Cameral deep-dive (Freeze, CamSync, DNAReg, …) lives next door: [`../cam`](../cam/).
 
 ```bash
@@ -99,18 +101,22 @@ cd 11-dense && go run .      # one chapter
 | 76 | [`76-nativecpu`](76-nativecpu/) | NativeCPU — opt-in welvet.cpp C ABI | `github.com/openfluke/welvet/nativecpp` | ok | yes |
 | 77 | [`77-native-layers`](77-native-layers/) | NativeCPU — TrainNativeMSE per layer | `layers/*` + nativecpp | ok | yes |
 | 78 | [`78-native-trainmodes`](78-native-trainmodes/) | NativeCPU — TrainMode stack / parallel / mesh / line | `layers/parallel` + nativecpp | ok | yes |
+| 79 | [`79-qnn`](79-qnn/) | QNN — opt-in Hexagon HTP (welvet.qnn) | `nativeqnn` + dense | ok | yes |
+| 80 | [`80-qnn-layers`](80-qnn-layers/) | QNN — HTP layer tour (session ABI) | `nativeqnn` | ok | yes |
+| 81 | [`81-qnn-results`](81-qnn-results/) | QNN — go_v_qnn RESULTS (large shapes) | w2a RESULTS.md | ok | yes |
 
 ## Last smoke
 
 ```
 go run ./cmd/runall
-======== welvet book: ok=73+ fail=0 skip=0  # re-run after §76–78 ========
+======== welvet book: ok=76+ fail=0 skip=0  # re-run after §79–81 ========
 ```
 
 ## Related
 
-- Book HTML: https://openfluke.github.io/welvet/ (§76–78 NativeCPU)
-- Engine: `/home/openfluke/gs/welvet` (`@v1.1.7`)
+- Book HTML: https://openfluke.github.io/welvet/ (§76–78 NativeCPU · §79–81 QNN)
+- Engine: `../../welvet` (`@v1.2.0`) · NPU: `welvet.qnn` 1.0.0
 - Cam cookbook: [`../cam`](../cam/)
+- Matrix: [`../../w2a/suites/go_v_qnn/RESULTS.md`](../../w2a/suites/go_v_qnn/RESULTS.md)
 
 See also [`GAPS.md`](GAPS.md) for what still needs external weights.

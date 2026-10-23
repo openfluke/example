@@ -466,5 +466,23 @@
     "num": "78",
     "title": "NativeCPU \u2014 TrainMode stack / parallel / mesh / line",
     "has_main": true
+  },
+  {
+    "slug": "79-qnn",
+    "num": "79",
+    "title": "QNN \u2014 opt-in Hexagon HTP (welvet.qnn)",
+    "has_main": true
+  },
+  {
+    "slug": "80-qnn-layers",
+    "num": "80",
+    "title": "QNN \u2014 HTP layer tour (session ABI)",
+    "has_main": true
+  },
+  {
+    "slug": "81-qnn-results",
+    "num": "81",
+    "title": "QNN \u2014 go_v_qnn RESULTS (large shapes)",
+    "has_main": true
   }
 ]
