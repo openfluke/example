@@ -107,3 +107,46 @@ Rebuild/install Metal from its checkout with `./scripts/macos_install_go.sh`.
 
 The Go checkout must contain the completed C++ layer dispatch and call-counter
 API used by this example. The program fails clearly if either backend is absent.
+
+
+## Appendix — Mamba forward results (provided excerpt)
+
+Recorded from the user-provided output on 2026-10-27. Coverage: Mamba forward
+passes across the 12 parameter dtypes below; every row reported `ok`.
+Timings are converted from microseconds to milliseconds without changing the
+reported measurements. Speedups and percentages retain the supplied rounding.
+
+Each comparison cell shows **speedup × / latency reduction %** for the named
+backend against its reference. For example, Metal versus Go is `Go time / Metal
+time`; a negative latency reduction means the named backend was slower.
+
+| Parameter dtype | Go (ms) | C++ (ms) | Metal (ms) | C++ vs Go | Metal vs Go | Metal vs C++ |
+|---|---:|---:|---:|---:|---:|---:|
+| float64 | 89.3145 | 236.2417 | 28.9586 | 0.3781× / -164.5% | 3.084× / +67.6% | 8.158× / +87.7% |
+| float32 | 69.0185 | 225.8129 | 29.0104 | 0.3056× / -227.2% | 2.379× / +58.0% | 7.784× / +87.2% |
+| float16 | 190.5450 | 1155.9022 | 28.9468 | 0.1648× / -506.6% | 6.583× / +84.8% | 39.93× / +97.5% |
+| bfloat16 | 149.3513 | 1049.1798 | 29.0033 | 0.1424× / -602.5% | 5.149× / +80.6% | 36.17× / +97.2% |
+| fp8e4m3 | 265.8816 | 1519.8743 | 29.1590 | 0.1749× / -471.6% | 9.118× / +89.0% | 52.12× / +98.1% |
+| fp8e5m2 | 166.9281 | 1104.4126 | 28.9459 | 0.1511× / -561.6% | 5.767× / +82.7% | 38.15× / +97.4% |
+| int64 | 151.7757 | 1035.3722 | 29.3197 | 0.1466× / -582.2% | 5.177× / +80.7% | 35.31× / +97.2% |
+| int32 | 157.6887 | 1024.2736 | 29.0482 | 0.154× / -549.6% | 5.429× / +81.6% | 35.26× / +97.2% |
+| int16 | 161.5276 | 1025.2332 | 29.1347 | 0.1576× / -534.7% | 5.544× / +82.0% | 35.19× / +97.2% |
+| int8 | 158.4332 | 1021.2938 | 29.0463 | 0.1551× / -544.6% | 5.455× / +81.7% | 35.16× / +97.2% |
+| uint64 | 175.5692 | 1050.9175 | 29.0923 | 0.1671× / -498.6% | 6.035× / +83.4% | 36.12× / +97.2% |
+| uint32 | 178.2602 | 1052.1420 | 29.0702 | 0.1694× / -490.2% | 6.132× / +83.7% | 36.19× / +97.2% |
+
+Across this excerpt, Metal was **2.379–9.118× faster than Go** and
+**7.784–52.12× faster than C++** on the measured binding paths.
+
+Output determinism (`exact bits / within tolerance`):
+
+| Dtypes | Go ↔ C++ | Go ↔ Metal | C++ ↔ Metal |
+|---|---:|---:|---:|
+| float64, float32, float16, bfloat16, fp8e4m3, fp8e5m2, int64, int32, int16, int8 | 100.0% / 100.0% | 100.0% / 100.0% | 100.0% / 100.0% |
+| uint64 | 21.2% / 100.0% | 100.0% / 100.0% | 21.2% / 100.0% |
+| uint32 | 45.4% / 100.0% | 100.0% / 100.0% | 45.4% / 100.0% |
+
+Go and Metal matched bit-for-bit for every supplied dtype. The unsigned C++
+results had lower exact-bit agreement while every compared value remained within
+numerical tolerance. These percentages describe output agreement, not model
+prediction accuracy.
