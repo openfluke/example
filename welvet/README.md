@@ -10,6 +10,15 @@ Each folder has **When / Where / Why / What** plus captured sample output.
 
 **v1.2.0 Hexagon NPU:** chapters **79–81** — opt-in `BackendQNN` + `SyncToQNN`, session layer tour, RESULTS.md showcase (`welvet.qnn` 1.0.0 · Windows ARM64). Put `welvet/native/qnn/windows_arm64` on `PATH` so `libwelvet_qnn.dll` loads.
 
+**v1.3.0 Apple Metal:** chapters **82–88** — mounted forward, Mamba native dtypes,
+all 29 training modes, explicit weight return/ENTITY saving, JSON placement and
+mixed Go/C++/Metal execution. The native backend is independent welvet.metal 0.68.
+
+```sh
+./run_apple.sh                       # small Apple usage tour
+cd 82-apple-metal && go run .        # first Metal forward
+```
+
 Cameral deep-dive (Freeze, CamSync, DNAReg, …) lives next door: [`../cam`](../cam/).
 
 ```bash
@@ -104,6 +113,13 @@ cd 11-dense && go run .      # one chapter
 | 79 | [`79-qnn`](79-qnn/) | QNN — opt-in Hexagon HTP (welvet.qnn) | `nativeqnn` + dense | ok | yes |
 | 80 | [`80-qnn-layers`](80-qnn-layers/) | QNN — HTP layer tour (session ABI) | `nativeqnn` | ok | yes |
 | 81 | [`81-qnn-results`](81-qnn-results/) | QNN — go_v_qnn RESULTS (large shapes) | w2a RESULTS.md | ok | yes |
+| 82 | [`82-apple-metal`](82-apple-metal/) | Apple Metal — mount and forward | `nativemetal` | ok | yes |
+| 83 | [`83-apple-mamba-dtypes`](83-apple-mamba-dtypes/) | Apple Metal — Mamba parameter dtypes | `nativemetal + mamba` | ok | yes |
+| 84 | [`84-apple-training`](84-apple-training/) | Apple Metal — training modes | `nativemetal + parallel + architecture` | ok | yes |
+| 85 | [`85-apple-save-weights`](85-apple-save-weights/) | Apple Metal — weight return and ENTITY save | `nativemetal + entity` | ok | yes |
+| 86 | [`86-apple-json-routing`](86-apple-json-routing/) | Apple Metal — JSON backend placement | `nativemetal + runtime/placement` | ok | yes |
+| 87 | [`87-apple-mixed-backends`](87-apple-mixed-backends/) | Apple Metal — mixed Go/C++/Metal | `nativecpp + nativemetal + placement` | ok | yes |
+| 88 | [`88-apple-mamba-results`](88-apple-mamba-results/) | Apple Metal — Mamba results and stress runner | `apple_stress_test` | ok | yes |
 
 ## Last smoke
 
@@ -115,8 +131,24 @@ go run ./cmd/runall
 ## Related
 
 - Book HTML: https://openfluke.github.io/welvet/ (§76–78 NativeCPU · §79–81 QNN)
-- Engine: `../../welvet` (`@v1.2.0`) · NPU: `welvet.qnn` 1.0.0
+- Engine: `../../welvet` (local v1.3.0 checkout) · NPU: `welvet.qnn` 1.0.0
 - Cam cookbook: [`../cam`](../cam/)
 - Matrix: [`../../w2a/suites/go_v_qnn/RESULTS.md`](../../w2a/suites/go_v_qnn/RESULTS.md)
 
 See also [`GAPS.md`](GAPS.md) for what still needs external weights.
+
+## Apple examples
+
+The small examples 82–87 need Apple silicon macOS, cgo and the installed Metal
+dylib; 88 prints a labelled captured excerpt and works without a GPU. Keep a
+normal build for example 87 so C++ and Metal can coexist. In 82–86,
+`-tags welvet_metal` excludes the C++ binding.
+
+For the full Mamba timing/determinism matrix, see
+[`apple_stress_test`](apple_stress_test/README.md): all 34 parameter dtypes and
+29 training modes. `./run_apple.sh` runs the usage tour without launching that
+large stress matrix.
+
+Apple usage tour 82–88: all seven examples verified on Apple M5/macOS arm64.
+Example 83 also exercised all 34 parameter dtypes; example 84 exercised all
+29 training modes. Tests live in w2a as `TestAppleNumberedExamples`.

@@ -27,3 +27,13 @@
 ## Cam deep-dive
 
 Everything ModeFreeze / Shadow / CamSync / DNAReg / Rotate / Disagree → [`../cam`](../cam/).
+
+## Apple examples 82–88
+
+Mounted forward, Mamba's 34 native parameter dtypes, the 29 training modes,
+explicit weight return and ENTITY saving, JSON placement, and mixed
+Go/C++/Metal routing are demonstrated locally. Apple GPU examples need a
+compatible Apple silicon macOS/cgo runtime and installed Metal dylib. The
+results chapter is a labelled supplied snapshot; live timings come from
+`apple_stress_test`. Browser/WASM or ANE execution is not claimed by these
+native Metal examples.
