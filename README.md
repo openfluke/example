@@ -5,7 +5,7 @@ Runnable Welvet examples — **every feature** from the
 
 | Folder | What |
 |--------|------|
-| [`welvet/`](welvet/) | Book chapters 01–78 (incl. **§76–78 NativeCPU**): core → layers → runtime → systems → model → stubs — each with **When / Where / Why** + sample output |
+| [`welvet/`](welvet/) | Book chapters 01–95 (NativeCPU **76–78**, QNN **79–81**, Metal **82–88**, **CUDA 89–95**): core → layers → runtime → systems → model → stubs — each with **When / Where / Why** + sample output |
 | [`cam/`](cam/) | Parallel cameral deep-dive: Freeze, Shadow, CamSync, DNAReg, Rotate, Combine, every layer-as-cam — **asserted PASS/FAIL proofs** |
 
 ## Quick start
@@ -21,9 +21,10 @@ cd welvet/11-dense && source ../env.sh && go run .
 cd cam && go run ./cmd/runall
 ```
 
-Engine: **`github.com/openfluke/welvet@v1.1.7`** (NativeCPU TrainModes). Until the
-tag is on the proxy, `welvet/go.mod` keeps a local `replace => ../../welvet`.
-Feature book: https://openfluke.github.io/welvet/ (§76–78 NativeCPU).
+Engine: local `../../welvet` (**v1.4.0** — CUDA `nativecuda` + Metal + QNN + NativeCPU).
+`welvet/go.mod` keeps `replace => ../../welvet` until the tag is on the proxy.
+Feature book: https://openfluke.github.io/welvet/ (§89–95 NVIDIA CUDA).
+NVIDIA tour: `cd welvet && ./run_nvidia.sh`.
 
 ## WASM — npm + HTML (every chapter)
 

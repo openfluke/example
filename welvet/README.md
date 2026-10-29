@@ -12,11 +12,17 @@ Each folder has **When / Where / Why / What** plus captured sample output.
 
 **v1.3.0 Apple Metal:** chapters **82–88** — mounted forward, Mamba native dtypes,
 all 29 training modes, explicit weight return/ENTITY saving, JSON placement and
-mixed Go/C++/Metal execution. The native backend is independent welvet.metal 0.68.
+mixed Go/C++/Metal execution. The native backend is independent welvet.metal.
+
+**v1.4.0 NVIDIA CUDA:** chapters **89–95** — same mounted-session tour for
+`nativecuda` + welvet.cuda **0.79** (mount, Mamba dtypes, 29 train modes,
+SyncToGo/ENTITY, JSON routing, mixed Go/C++/CUDA, suite pointers).
 
 ```sh
 ./run_apple.sh                       # small Apple usage tour
+./run_nvidia.sh                      # small NVIDIA usage tour
 cd 82-apple-metal && go run .        # first Metal forward
+cd 89-nvidia-cuda && go run .        # first CUDA forward
 ```
 
 Cameral deep-dive (Freeze, CamSync, DNAReg, …) lives next door: [`../cam`](../cam/).
@@ -120,18 +126,25 @@ cd 11-dense && go run .      # one chapter
 | 86 | [`86-apple-json-routing`](86-apple-json-routing/) | Apple Metal — JSON backend placement | `nativemetal + runtime/placement` | ok | yes |
 | 87 | [`87-apple-mixed-backends`](87-apple-mixed-backends/) | Apple Metal — mixed Go/C++/Metal | `nativecpp + nativemetal + placement` | ok | yes |
 | 88 | [`88-apple-mamba-results`](88-apple-mamba-results/) | Apple Metal — Mamba results and stress runner | `apple_stress_test` | ok | yes |
+| 89 | [`89-nvidia-cuda`](89-nvidia-cuda/) | NVIDIA CUDA — mount and forward | `nativecuda` | ok | yes |
+| 90 | [`90-nvidia-mamba-dtypes`](90-nvidia-mamba-dtypes/) | NVIDIA CUDA — Mamba parameter dtypes | `nativecuda + mamba` | ok | yes |
+| 91 | [`91-nvidia-training`](91-nvidia-training/) | NVIDIA CUDA — training modes | `nativecuda + parallel + architecture` | ok | yes |
+| 92 | [`92-nvidia-save-weights`](92-nvidia-save-weights/) | NVIDIA CUDA — weight return and ENTITY save | `nativecuda + entity` | ok | yes |
+| 93 | [`93-nvidia-json-routing`](93-nvidia-json-routing/) | NVIDIA CUDA — JSON backend placement | `nativecuda + runtime/placement` | ok | yes |
+| 94 | [`94-nvidia-mixed-backends`](94-nvidia-mixed-backends/) | NVIDIA CUDA — mixed Go/C++/CUDA | `nativecpp + nativecuda + placement` | ok | yes |
+| 95 | [`95-nvidia-cuda-results`](95-nvidia-cuda-results/) | NVIDIA CUDA — results and suite pointers | w2a / cuda_smoke | ok | yes |
 
 ## Last smoke
 
 ```
 go run ./cmd/runall
-======== welvet book: ok=76+ fail=0 skip=0  # re-run after §79–81 ========
+======== welvet book: ok=… fail=0 (CUDA chapters soft-SKIP without a GPU) ========
 ```
 
 ## Related
 
-- Book HTML: https://openfluke.github.io/welvet/ (§76–78 NativeCPU · §79–81 QNN)
-- Engine: `../../welvet` (local v1.3.0 checkout) · NPU: `welvet.qnn` 1.0.0
+- Book HTML: https://openfluke.github.io/welvet/ (§76–78 NativeCPU · §79–81 QNN · §82–88 Metal · §89–95 CUDA)
+- Engine: `../../welvet` (local **v1.4.0** checkout) · NPU: `welvet.qnn` 1.0.0 · CUDA: `welvet.cuda` 0.79
 - Cam cookbook: [`../cam`](../cam/)
 - Matrix: [`../../w2a/suites/go_v_qnn/RESULTS.md`](../../w2a/suites/go_v_qnn/RESULTS.md)
 
@@ -152,3 +165,14 @@ large stress matrix.
 Apple usage tour 82–88: all seven examples verified on Apple M5/macOS arm64.
 Example 83 also exercised all 34 parameter dtypes; example 84 exercised all
 29 training modes. Tests live in w2a as `TestAppleNumberedExamples`.
+
+## NVIDIA examples
+
+Examples 89–94 need Linux/Windows amd64 (JSON/mixed routing: **Linux amd64**),
+cgo, NVIDIA driver/runtime, and installed `libwelvet_cuda`. Soft-SKIP when the
+library or GPU is missing so `runall` stays green on CPU-only hosts. Example 95
+is host-only pointers. Keep a normal build for example 94 so C++ and CUDA can
+coexist; in 89–93, `-tags welvet_cuda` excludes the C++ binding.
+
+`./run_nvidia.sh` runs the usage tour. Live matrices: w2a `go_v_cuda` and
+`welvet.cuda/examples/cuda_smoke`.

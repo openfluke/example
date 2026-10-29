@@ -37,3 +37,11 @@ compatible Apple silicon macOS/cgo runtime and installed Metal dylib. The
 results chapter is a labelled supplied snapshot; live timings come from
 `apple_stress_test`. Browser/WASM or ANE execution is not claimed by these
 native Metal examples.
+
+## NVIDIA examples 89–95
+
+Same mounted-session tour for `nativecuda` + welvet.cuda **0.79** (Go Welvet
+**v1.4.0**). Soft-SKIP without an NVIDIA GPU so book smoke stays green.
+`EnableRouting` (93–94) is Linux amd64 only. Live matrices live in w2a
+`go_v_cuda` and `welvet.cuda/examples/cuda_smoke` — chapter 95 only prints pointers.
+Browser/WASM CUDA is not claimed.
