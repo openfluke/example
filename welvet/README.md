@@ -2,9 +2,15 @@
 
 Runnable Go for **every Welvet book chapter** — copied from
 `openfluke.github.io/welvet/examples` (and local NativeCPU chapters), pointed at local
-`../../welvet` via `go.mod` replace.
+`../../welvet` via `go.mod` replace. Part XVII adds **Python** (`main.py`) for the
+C-ABI / PyPI line.
 
 Each folder has **When / Where / Why / What** plus captured sample output.
+
+**v1.7.3 Python C-ABI:** chapters **114–117** — `pip install welvet==1.1.2`, Dense
+forward, backend probe (CUDA/Metal/… soft-SKIP), train SGD + `.entity` round-trip,
+MHA `place` + `prepare_grid` notes. Run `python3 main.py` in each folder (or
+`./run_python.sh` from the book examples tree).
 
 **v1.1.7 NativeCPU:** chapters **76–78** — opt-in `BackendNativeCPU`, per-layer `TrainNativeMSE`, TrainMode stack/parallel/mesh/line + `SyncWeightsFromNative`.
 
@@ -143,8 +149,8 @@ go run ./cmd/runall
 
 ## Related
 
-- Book HTML: https://openfluke.github.io/welvet/ (§76–78 NativeCPU · §79–81 QNN · §82–88 Metal · §89–95 CUDA)
-- Engine: `../../welvet` (local **v1.4.0** checkout) · NPU: `welvet.qnn` 1.0.0 · CUDA: `welvet.cuda` 0.79
+- Book HTML: https://openfluke.github.io/welvet/ (§76–78 NativeCPU · §79–81 QNN · §82–88 Metal · §89–95 CUDA · §114–117 Python)
+- Engine: `../../welvet` (Go **v1.7.3**) · Python: `pip install welvet==1.1.2` · NPU: `welvet.qnn` · CUDA: `welvet.cuda`
 - Cam cookbook: [`../cam`](../cam/)
 - Matrix: [`../../w2a/suites/go_v_qnn/RESULTS.md`](../../w2a/suites/go_v_qnn/RESULTS.md)
 
